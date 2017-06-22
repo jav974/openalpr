@@ -1,5 +1,7 @@
 project(src)
 
+SET(CMAKE_CXX_STANDARD 11)
+
 set(CMAKE_BUILD_TYPE RelWithDebugInfo)
 #set(CMAKE_BUILD_TYPE Debug)
 
@@ -122,10 +124,11 @@ IF (WIN32)
 		ws2_32.lib
 	)
 ELSE()
-
+  IF (NOT ANDROID)
 	SET (Extra_LIBS
 		pthread
 	)
+  ENDIF()
 
 ENDIF()
 
@@ -161,6 +164,9 @@ if (NOT IOS)
   )
 ENDIF()
 
+IF (ANDROID)
+  SET(WITH_DAEMON false)
+ENDIF()
 
 # Compile the alprd library on Unix-based OS
 IF (WITH_DAEMON)
@@ -178,7 +184,7 @@ IF (WITH_DAEMON)
       ${OPENALPR_LIB}
 	  support
       video
-	  curl
+	  libcurl.a
 	  ${OpenCV_LIBS}
 	  ${Tesseract_LIBRARIES}
 	  ${log4cplus_LIBRARIES}

@@ -10,7 +10,16 @@
 #include <netdb.h>
 
 #include <netinet/in.h>
-#include <sys/fcntl.h>
+
+#ifdef __ANDROID__
+# include <android/api-level.h>
+#endif
+
+#ifdef __ANDROID_API__
+# include <fcntl.h>
+#else
+# include <sys/fcntl.h>
+#endif
 
 #define BS_MAJOR_VERSION  1
 #define BS_MINOR_VERSION  2

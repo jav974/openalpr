@@ -47,3 +47,6 @@ Release/
 
 
 cmake_install.cmake
+
+android-build/
+src/openalpr/ocr/tesseract/

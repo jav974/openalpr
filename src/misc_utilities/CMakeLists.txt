@@ -1,4 +1,8 @@
 
+IF (NOT ANDROID AND NOT WIN32)
+  SET (Extra_LIBS pthread)
+ENDIF()
+
 ADD_EXECUTABLE( openalpr-utils-sortstate sortstate.cpp  )
 TARGET_LINK_LIBRARIES(openalpr-utils-sortstate
     ${OPENALPR_LIB}
@@ -26,7 +30,7 @@ TARGET_LINK_LIBRARIES(openalpr-utils-benchmark
     ${OPENALPR_LIB}
     ${STATE_DETECTION_LIB}
     support
-    pthread
+    ${Extra_LIBS}
     ${OpenCV_LIBS} 
 	${Tesseract_LIBRARIES}
   )

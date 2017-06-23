@@ -188,8 +188,7 @@ namespace alpr
       #if defined(__APPLE__)
             double milliseconds = (stat_buf.st_ctimespec.tv_sec * 1000) +  (((double) stat_buf.st_ctimespec.tv_nsec) / 1000000.0);
       #else
-            //double milliseconds = (stat_buf.st_ctim.tv_sec * 1000) +  (((double) stat_buf.st_ctim.tv_nsec) / 1000000.0);
-	    double milliseconds = (stat_buf.st_ctime * 1000) +  (((double) stat_buf.st_ctime * 1000000000) / 1000000.0);
+            double milliseconds = (stat_buf.st_ctim.tv_sec * 1000) +  (((double) stat_buf.st_ctim.tv_nsec) / 1000000.0);
       #endif
       response.size = 512 * stat_buf.st_blocks;
       response.creation_time = (int64_t) milliseconds;
